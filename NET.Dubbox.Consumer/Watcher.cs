@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ZooKeeperNet;
 
-namespace WindowsFormsApplication1
+namespace NET.Dubbox.Consumer
 {
     public class Watcher : IWatcher
     {
@@ -20,14 +20,5 @@ namespace WindowsFormsApplication1
         }
     }
 
-
-    public class Watcher2 : IWatcher
-    {
-        public void Process(WatchedEvent @event)
-        {
-      
-
-
-        }
-    }
+ 
 }

@@ -1,6 +1,6 @@
-﻿namespace WindowsFormsApplication1
+﻿namespace ZookeeperExplorer
 {
-    partial class Form2
+    partial class Form1
     {
         /// <summary>
         /// Required designer variable.
@@ -35,11 +35,11 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(909, 607);
+            this.button1.Location = new System.Drawing.Point(782, 686);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(139, 43);
             this.button1.TabIndex = 0;
-            this.button1.Text = "加载节点/刷新";
+            this.button1.Text = "刷新节点";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -48,28 +48,28 @@
             this.treeView1.Dock = System.Windows.Forms.DockStyle.Left;
             this.treeView1.Location = new System.Drawing.Point(0, 0);
             this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(704, 752);
+            this.treeView1.Size = new System.Drawing.Size(592, 752);
             this.treeView1.TabIndex = 1;
             this.treeView1.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView1_NodeMouseClick);
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(758, 69);
+            this.textBox1.Location = new System.Drawing.Point(621, 12);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(552, 501);
+            this.textBox1.Size = new System.Drawing.Size(479, 658);
             this.textBox1.TabIndex = 2;
             // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1438, 752);
+            this.ClientSize = new System.Drawing.Size(1158, 752);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.treeView1);
             this.Controls.Add(this.button1);
             this.Name = "Form2";
-            this.Text = "Form2";
+            this.Text = "zookeepr explorer";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form2_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -9,26 +9,35 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ZooKeeperNet;
 using Org.Apache.Zookeeper.Data;
+using System.Configuration;
 
-
-namespace WindowsFormsApplication1
+namespace ZookeeperExplorer
 {
-    public partial class Form2 : Form
+    public partial class Form1 : Form
     {
 
         ZooKeeper _zk;
 
 
-        public Form2()
+        public Form1()
         {
             InitializeComponent();
-            _zk = new ZooKeeper("172.16.0.85:2181", new TimeSpan(0, 0, 1), new Watcher());
-            button1_Click(null, null);
+
+            string zookeeperHost = ConfigurationManager.AppSettings["zookeeperHost"];
+
+            _zk = new ZooKeeper(zookeeperHost, new TimeSpan(0, 0, 60), new Watcher());
+
+            Refresh();
+
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
 
+
+        /// <summary>
+        /// 刷新节点
+        /// </summary>
+        private void Refresh()
+        {
             treeView1.Nodes.Clear(); // 清空
 
             try
@@ -42,10 +51,19 @@ namespace WindowsFormsApplication1
             {
                 MessageBox.Show(exp.Message);
             }
-
-
         }
 
+
+
+        /// <summary>
+        /// 刷新节点按钮
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Refresh();
+        }
 
 
         /// <summary>
@@ -75,11 +93,15 @@ namespace WindowsFormsApplication1
 
                 Recurs(nodeFullName, node.Nodes);
             }
-
         }
 
 
 
+        /// <summary>
+        /// 点击节点获取节点的详细信息
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
             textBox1.Clear();
@@ -100,19 +122,6 @@ namespace WindowsFormsApplication1
                 textBox1.AppendText("\n");
                 textBox1.AppendText("data:" + data + "\n");
             }
-
-            int index = zookeeperNode.IndexOf("/providers/"); // /providers/ 有11个字母
-            if (index > 0)
-            {
-                // node name
-                textBox1.AppendText("\n");
-                textBox1.AppendText("node name:\n");
-                string substr = zookeeperNode.Substring(index + 11);
-                textBox1.AppendText(System.Web.HttpUtility.UrlDecode(substr));
-            }
-        
-
-
         }
 
 
@@ -124,7 +133,11 @@ namespace WindowsFormsApplication1
         /// <param name="e"></param>
         private void Form2_FormClosing(object sender, FormClosingEventArgs e)
         {
-            _zk.Dispose();
+            if (_zk != null)
+            {
+                _zk.Dispose();
+            }
+
         }
 
     }

@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsApplication1", "WindowsFormsApplication1\WindowsFormsApplication1.csproj", "{94CDCDC8-EFD3-44CA-898C-9E80270F0F9F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NET.Dubbox.Consumer", "NET.Dubbox.Consumer\NET.Dubbox.Consumer.csproj", "{6FD5DE45-DB94-4AD3-B27A-990A7D26A3BE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientTest", "ClientTest\ClientTest.csproj", "{3114BD4E-0A0F-4623-9456-4541E2EAFDE0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZookeeperExplorer", "ZookeeperExplorer\ZookeeperExplorer.csproj", "{94CDCDC8-EFD3-44CA-898C-9E80270F0F9F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,6 +15,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6FD5DE45-DB94-4AD3-B27A-990A7D26A3BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FD5DE45-DB94-4AD3-B27A-990A7D26A3BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FD5DE45-DB94-4AD3-B27A-990A7D26A3BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FD5DE45-DB94-4AD3-B27A-990A7D26A3BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3114BD4E-0A0F-4623-9456-4541E2EAFDE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3114BD4E-0A0F-4623-9456-4541E2EAFDE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3114BD4E-0A0F-4623-9456-4541E2EAFDE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3114BD4E-0A0F-4623-9456-4541E2EAFDE0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{94CDCDC8-EFD3-44CA-898C-9E80270F0F9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{94CDCDC8-EFD3-44CA-898C-9E80270F0F9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{94CDCDC8-EFD3-44CA-898C-9E80270F0F9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
