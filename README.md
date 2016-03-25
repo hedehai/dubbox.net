@@ -1,6 +1,6 @@
 <h5>目前实现的功能</h5>
-（1）.net接入dubbox的rest服务，实现了round robbin模式的客户端负载均衡  <br />
-（2）zookeeper节点查看器  <br />
+（1）.net调用dubbox的rest服务。负载均衡算法使用的是round robin。 <br />
+（2）一个zookeeper节点查看器。 <br />
 <br />
 
 <h5>IDE</h5>
