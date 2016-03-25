@@ -7,8 +7,8 @@
     <ProjectGuid>{3114BD4E-0A0F-4623-9456-4541E2EAFDE0}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ClientTest</RootNamespace>
-    <AssemblyName>ClientTest</AssemblyName>
+    <RootNamespace>NET.Dubbox.Consumer.Test</RootNamespace>
+    <AssemblyName>NET.Dubbox.Consumer.Test</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -66,6 +66,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

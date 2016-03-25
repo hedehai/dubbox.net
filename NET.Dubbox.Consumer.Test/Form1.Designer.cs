@@ -1,4 +1,4 @@
-﻿namespace ClientTest
+﻿namespace NET.Dubbox.Consumer.Test
 {
     partial class Form1
     {
