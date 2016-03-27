@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,43 +13,65 @@ namespace NET.Dubbox.Consumer
     /// </summary>
     public class RoundRobbinsManager
     {
-        static Dictionary<String, RoundRobbin> _dictionary = new Dictionary<string, RoundRobbin>();
+        private static Dictionary<String, RoundRobbin> _dictionary = new Dictionary<string, RoundRobbin>();
+        private static RoundRobbinsManager _roundRobbinsManager = new RoundRobbinsManager();
+        private static System.Timers.Timer _tmr = new System.Timers.Timer();
+        private static ZooKeeper _zk;
 
-        static RoundRobbinsManager _roundRobbinsManager = new RoundRobbinsManager();
 
-        static System.Timers.Timer _tmr = new System.Timers.Timer();
-
-        static ZooKeeper _zk;
-
-        static RoundRobbinsManager()
+        /// <summary>
+        /// 
+        /// </summary>
+         static RoundRobbinsManager()
         {
-            _zk = new ZooKeeper("172.16.0.85:2181", new TimeSpan(0, 0, 60), new Watcher());
-            _tmr.Interval = 2000; // ms
-            _tmr.Elapsed += _tmr_Elapsed;
-            _tmr.Start();
-            _tmr_Elapsed(null, null); //初次运行
-
+            if (ConfigurationManager.AppSettings["zookeeperHost"] == null)
+            {
+                throw new ApplicationException("未找到配置节zookeeperHost");
+            }
+            else
+            {
+                _zk = new ZooKeeper(ConfigurationManager.AppSettings["zookeeperHost"], new TimeSpan(0, 0, 60), new Watcher());
+                _tmr.Interval = 2000; // ms
+                _tmr.Elapsed += _tmr_Elapsed;
+                _tmr.Start();
+                _tmr_Elapsed(null, null); //初次运行
+            }
         }
 
-        static void _tmr_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
-        {
-            updateServiceList();
-        }
-
-
+        /// <summary>
+        /// 
+        /// </summary>
         private RoundRobbinsManager()
         {
         }
 
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private static void _tmr_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            updateServiceList();
+        }
 
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public static RoundRobbinsManager GetInstance()
         {
             return _roundRobbinsManager;
         }
 
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="serviceName"></param>
+        /// <returns></returns>
         public RoundRobbin this[string serviceName]
         {
             get
@@ -67,10 +90,9 @@ namespace NET.Dubbox.Consumer
         ///更新服务列表，整个替换
         /// </summary>
 
-        static void updateServiceList()
+        private static void updateServiceList()
         {
             Dictionary<String, RoundRobbin> newDictionary = new Dictionary<string, RoundRobbin>();
-
             try
             {
                 List<string> rootChildren = (List<string>)_zk.GetChildren("/dubbo", false);
@@ -78,14 +100,11 @@ namespace NET.Dubbox.Consumer
                 {
                     List<string> children = (List<string>)_zk.GetChildren("/dubbo/" + rootChild + "/providers", false);
 
-
                     List<string> serviceHosts = new List<string>();
                     foreach (var child in children)
                     {
                         string childNode = System.Web.HttpUtility.UrlDecode(child);
-
                         int index1 = childNode.IndexOf("rest://");  // 查找rest://的位置
-
                         if (childNode.Contains("rest://") == true)
                         {
                             int index = childNode.IndexOf("/", 7); // “rest://”有7个字符
@@ -100,10 +119,9 @@ namespace NET.Dubbox.Consumer
             {
                 // TODO:日志
             }
-
             _dictionary = newDictionary;
-
         }
+
 
 
 

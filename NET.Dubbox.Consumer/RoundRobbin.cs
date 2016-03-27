@@ -14,6 +14,10 @@ namespace NET.Dubbox.Consumer
         int _index = 0;
         int _count = 0;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="hosts"></param>
         public RoundRobbin(List<string> hosts)
         {
             if (hosts == null)
@@ -55,8 +59,6 @@ namespace NET.Dubbox.Consumer
                 _index = (_index + 1) % _count;
                 return _hosts[_index];
             }
-
-
         }
 
 
